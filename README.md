@@ -22,7 +22,7 @@ Before editing code, you MUST generate an Implementation Plan Artifact that incl
 - **Verification:** Always run the relevant test or build command after making a change to verify success.
 - **Atomic Commits:** Focus on one logical change at a time. If a task requires multiple steps, confirm after each step.
 - **Context Management:** If the conversation history gets long or we switch to a new feature, proactively suggest a `/clear` after summarizing progress. After code changes make sure you verify and update any .md (readme, architecture, etc.) files.
-- **Git commit messages:** Use Conventional Commits (https://www.conventionalcommits.org/en/v1.0.0/). Make sure the commit message is short and to the point, no long unneccessary explanations.
+- **Git commit messages:** Use Conventional Commits (https://www.conventionalcommits.org/en/v1.0.0/). Make sure the commit message is short and to the point, no long unneccessary explanations and buzzwords, keep it simple, human readable and understandable.
 
 ## 🧪 Testing & Quality
 - **Test First:** If a bug is reported, try to create a reproduction test case before fixing it.
@@ -38,7 +38,7 @@ Before editing code, you MUST generate an Implementation Plan Artifact that incl
 
 ## 💻 Coding Standards
 - **Imports:** Group imports by: 1. Standard library, 2. External dependencies, 3. Local modules.
-- **Maintainability:** Prioritize readability over "clever" one-liners. Prefer smaller functions, split big functions into smaller ones.
+- **Maintainability:** Prioritize readability over "clever" one-liners. Prefer smaller functions, split big functions into smaller ones. Always verify if you can re-use some of the existing functions (or functionalities).
 - **Error Handling:** Always include explicit error handling for async operations and I/O.
 - **Naming**: Use MixedCaps (not snake_case). Acronyms should be consistent case (URL, HTTP, ID).
 - **Interfaces**: Accept interfaces, return concrete types. Keep interfaces small.
