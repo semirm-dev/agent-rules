@@ -21,7 +21,7 @@ Before editing code, you MUST generate an Implementation Plan Artifact that incl
 - **Conciseness:** Provide direct, actionable answers. Minimize conversational filler.
 - **Verification:** Always run the relevant test or build command after making a change to verify success.
 - **Atomic Commits:** Focus on one logical change at a time. If a task requires multiple steps, confirm after each step.
-- **Context Management:** If the conversation history gets long or we switch to a new feature, proactively suggest a `/clear` after summarizing progress. After code changes make sure you verify and update related CLAUDE.md and ARCHITECTURE.md files (or any such related file)
+- **Context Management:** If the conversation history gets long or we switch to a new feature, proactively suggest a `/clear` after summarizing progress. After code changes make sure you verify and update any .md (readme, architecture, etc.) files.
 - **Git commit messages:** Use Conventional Commits (https://www.conventionalcommits.org/en/v1.0.0/). Make sure the commit message is short and to the point, no long unneccessary explanations.
 
 ## 🧪 Testing & Quality
