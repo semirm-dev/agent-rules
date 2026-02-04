@@ -6,7 +6,7 @@
 - IF you believe a file (or code, or anything else) is "dead/not needed," you MUST mark it for review in the Implementation Plan rather than deleting it.
 
 ## Implementation Plan Requirements
-Before editing code, you MUST generate an Implementation Plan Artifact that includes:
+- Before editing code, you MUST generate an Implementation Plan Artifact that includes:
 1. **Summary of Changes**: High-level goal.
 2. **File Diff Preview**: List every file to be modified or created.
 3. **Rollback Strategy**: How to undo these changes if they fail tests.
@@ -23,6 +23,7 @@ Before editing code, you MUST generate an Implementation Plan Artifact that incl
 - **Atomic Commits:** Focus on one logical change at a time. If a task requires multiple steps, confirm after each step.
 - **Context Management:** If the conversation history gets long or we switch to a new feature, proactively suggest a `/clear` after summarizing progress. After code changes make sure you verify and update any .md (readme, architecture, etc.) files.
 - **Git commit messages:** Use Conventional Commits (https://www.conventionalcommits.org/en/v1.0.0/). Make sure the commit message is short and to the point, no long unneccessary explanations and buzzwords, keep it simple, human readable and understandable.
+- Try to not do the hard work yourself (in the main agent), prefer to delegate tasks to multiple sub-agents to work in parallel. Main agent should aim to orchestrate (if possible) the work with sub-agents.
 
 ## 🧪 Testing & Quality
 - **Test First:** If a bug is reported, try to create a reproduction test case before fixing it.
