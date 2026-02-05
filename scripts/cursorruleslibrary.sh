@@ -1,25 +1,25 @@
 #!/bin/bash
-# Name: cursorruleslibrary.sh
+# Name: cursor-link-rules.sh
 
-# Use an absolute path for the library to help Cursor's indexer
 LIBRARY_DIR="$HOME/workspace/agent-rules"
 RULE_DIR=".cursor/rules"
 
-# 1. Create central library
-if [ ! -d "$LIBRARY_DIR" ]; then
-    mkdir -p "$LIBRARY_DIR"
-    echo "✅ Created central library at $LIBRARY_DIR"
-fi
-
-# 2. Create project structure
+# 1. Ensure project structure exists
 mkdir -p "$RULE_DIR"
 
-# 3. Create Symlink (using absolute path for the target)
-# We use the full path to $LIBRARY_DIR to ensure the IDE doesn't get lost
-if [ -L "$RULE_DIR/global-rules" ]; then
-    echo "ℹ️ Symlink already exists."
-else
-    # Use -f to overwrite if a broken link exists
-    ln -sf "$LIBRARY_DIR" "$RULE_DIR/global-rules"
-    echo "🔗 Symlinked global rules to project: $RULE_DIR/global-rules -> $LIBRARY_DIR"
+# 2. Check if library exists
+if [ ! -d "$LIBRARY_DIR" ]; then
+    echo "❌ Error: Library not found at $LIBRARY_DIR"
+    exit 1
 fi
+
+# 3. Create individual symlinks for each .mdc file
+echo "🔗 Linking rules from $LIBRARY_DIR..."
+for file in "$LIBRARY_DIR"/*.mdc; do
+    filename=$(basename "$file")
+    # -s for symbolic, -f to overwrite existing links
+    ln -sf "$file" "$RULE_DIR/$filename"
+    echo "   ✅ Linked $filename"
+done
+
+echo "🎉 Done! Restart Cursor to force a re-index."
