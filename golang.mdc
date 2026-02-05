@@ -1,0 +1,17 @@
+---
+description: Golang coding standards and idiomatic patterns
+globs: "**/*.go"
+---
+
+# Go Expert Rules
+
+## 💻 Coding Standards
+- **Maintainability:** Split functions >30 lines. Favor composition over inheritance.
+- **Error Handling:** - Use `fmt.Errorf("context: %w", err)` for all wrap-able errors.
+  - No "silent" errors. If an error is ignored, there must be a `// safe to ignore` comment.
+- **Interfaces:** Accept interfaces, return concrete types. Keep interfaces < 3 methods.
+- **Boilerplate:** Use `MixedCaps`. Acronyms (API, URL) must be consistent case.
+
+## 🧪 Testing & Quality
+- **Reproduction First:** Create a `repro_test.go` before fixing any reported bug.
+- **Linting:** Must pass `golangci-lint` before declaring a task "Done."
