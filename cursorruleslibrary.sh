@@ -1,7 +1,7 @@
 #!/bin/bash
-# Name: cursor-init.sh
+# Name: cursorruleslibrary.sh
 
-LIBRARY_DIR="$HOME/.cursor-rules-library"
+LIBRARY_DIR="$HOME/workspace/agent-rules"
 RULE_DIR=".cursor/rules"
 
 # 1. Create central library
