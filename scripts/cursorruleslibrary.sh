@@ -1,25 +1,22 @@
 #!/bin/bash
-# Name: cursor-link-rules.sh
+# 1. Source: Your master rule library
+LIB_DIR="$HOME/workspace/agent-rules"
 
-LIBRARY_DIR="$HOME/workspace/agent-rules"
-RULE_DIR=".cursor/rules"
+# 2. Destination: The global User Rules folder
+TARGET_DIR="$HOME/.cursor/rules"
 
-# 1. Ensure project structure exists
-mkdir -p "$RULE_DIR"
+# 3. Create target if it doesn't exist
+mkdir -p "$TARGET_DIR"
 
-# 2. Check if library exists
-if [ ! -d "$LIBRARY_DIR" ]; then
-    echo "❌ Error: Library not found at $LIBRARY_DIR"
-    exit 1
-fi
+# 4. Link only .mdc files
+echo "🔗 Linking .mdc files to $TARGET_DIR..."
 
-# 3. Create individual symlinks for each .mdc file
-echo "🔗 Linking rules from $LIBRARY_DIR..."
-for file in "$LIBRARY_DIR"/*.mdc; do
+shopt -s nullglob
+for file in "$LIB_DIR"/*.mdc; do
     filename=$(basename "$file")
-    # -s for symbolic, -f to overwrite existing links
-    ln -sf "$file" "$RULE_DIR/$filename"
+    # Force symbolic link (-s for symlink, -f to overwrite)
+    ln -sf "$file" "$TARGET_DIR/$filename"
     echo "   ✅ Linked $filename"
 done
 
-echo "🎉 Done! Restart Cursor to force a re-index."
+echo "🎉 Done. Rules are now globally linked to ~/.cursor/rules/"
