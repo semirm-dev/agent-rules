@@ -1,0 +1,24 @@
+---
+description: Requirements for high-level technical planning and risk assessment
+---
+
+# Agentic Implementation Plan
+
+Before any code execution for complex tasks, generate a plan artifact using this structure:
+
+## 1. 🎯 Summary
+- High-level architectural goal.
+- List of specialized sub-agents required for parallel execution.
+
+## 2. 🗺️ Strategy
+- **File Diff Preview:** List every file to be created or modified.
+- **Breaking Changes:** Explicitly flag if this change breaks existing APIs or DB schemas.
+
+## 3. 🚨 Risk Assessment
+- **Risk Level:** [LOW / MEDIUM / HIGH]
+- **Rollback Plan:** Specific steps to undo the changes if the build fails.
+- **Human Gate:** If Risk is HIGH, stop and wait for a "PROCEED" command.
+
+## 4. 🧪 Verification Plan
+- Specific commands to run (e.g., `go test ./internal/auth/...`, or whatever the test/build command is).
+- Expected visual/log output for success.

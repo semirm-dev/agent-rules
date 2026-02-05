@@ -1,0 +1,18 @@
+---
+description: Idiomatic Golang 1.26+ standards and best practices
+globs: "**/*.go"
+---
+
+# Go Production Standards
+
+## 💻 Coding Patterns
+- **Simplicity (KISS):** Prefer smaller, focused functions over complex ones. If a function >40 lines, refactor into sub-utilities.
+- **Packages:** Avoid "stuttering." Use `auth.Service` instead of `auth.AuthService`.
+- **Error Handling:** - ALWAYS wrap errors with context: `fmt.Errorf("user storage: save: %w", err)`.
+  - Use `errors.Is` and `errors.As` for checking error types.
+- **Interfaces:** "Accept interfaces, return concrete types." Keep interfaces small (2-3 methods max).
+
+## 🧪 Testing & Quality
+- **Table-Driven Tests:** Use table-driven patterns for all logic-heavy functions.
+- **Mocks:** Avoid heavy mocking libraries. Prefer "fake" implementations or thin interfaces for external I/O.
+- **Naming:** Use `MixedCaps` (Acronyms like `ID`, `HTTP`, `URL` should be consistent case).
