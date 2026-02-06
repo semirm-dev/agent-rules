@@ -6,7 +6,7 @@ globs: "**/*.go"
 # Go Production Standards
 
 ## 💻 Coding Patterns
-- **Simplicity (KISS):** Prefer smaller, focused functions over complex ones. If a function >40 lines, refactor into sub-utilities.
+- **Simplicity (KISS):** Prefer smaller, focused functions over complex ones. If a function >30 lines, refactor into sub-utilities.
 - **Packages:** Avoid "stuttering." Use `auth.Service` instead of `auth.AuthService`.
 - **Error Handling:** - ALWAYS wrap errors with context: `fmt.Errorf("user storage: save: %w", err)`.
   - Use `errors.Is` and `errors.As` for checking error types.

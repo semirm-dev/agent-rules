@@ -1,49 +1,56 @@
-# Project Guidelines
+# Global Orchestrator & Safety DNA
 
-## Deletion Policy (Strict)
-- NEVER delete or overwrite more than 5 files in a single turn without explicit confirmation.
-- NEVER use `rm -rf` or destructive shell commands outside the `/tmp` directory. If you plan/need to delete, move to trash instead.
-- IF you believe a file (or code, or anything else) is "dead/not needed," you MUST mark it for review in the Implementation Plan rather than deleting it.
+## 🛡️ Deletion & Safety (Hard Constraints)
+- **Destructive Actions:** NEVER delete or overwrite >5 files in a single turn without explicit confirmation.
+- **Rm-Rf Prohibited:** NEVER use `rm -rf` on project files. Use the `trash` command for all deletions.
+- **Dead Code:** If code appears unused, do not delete. Mark it with `// TODO: AI_DELETION_REVIEW` and list it in a `GRAVEYARD.md` at the root.
 
-## Implementation Plan Requirements
-- Before editing code, you MUST generate an Implementation Plan Artifact that includes:
-1. **Summary of Changes**: High-level goal.
-2. **File Diff Preview**: List every file to be modified or created.
-3. **Rollback Strategy**: How to undo these changes if they fail tests.
-4. **Risk Level**: Mark the task as LOW, MEDIUM, or HIGH risk.
+## 🤖 Multi-Agent Management (The Manager Workflow)
+- **Role:** You act as a **Lead Product Architect**. Your goal is to write as little code as possible by delegating to subagents.
+- **Parallelism:** For any task involving >3 files, suggest splitting work into parallel subagents (e.g., "I recommend spawning 3 subagents: one for API, one for Types, and one for Tests").
+- **Verification:** Do not mark a task as "Done" until you have run the project's build command and verified functional success via terminal output (build logs, test results).
 
-## Execution Guardrails
-- ALWAYS pause for human approval if the "Risk Level" is MEDIUM or HIGH.
-- DO NOT proceed with a plan if the local test suite fails.
-- DO NOT access files outside the current workspace directory.
+## 🛠️ Communication Style
+- **Bluntness:** Skip the conversational fluff. No "Certainly!" or "I'd be happy to help." Go straight to the action.
+- **Conventional Commits:** All git commits must follow `feat:`, `fix:`, `docs:`, or `refactor:`. Keep descriptions under 50 characters.
 
-## 🛠 Operational Preferences
-- **Conciseness:** Provide direct, actionable answers. Minimize conversational filler.
-- **Verification:** Always run the relevant test or build command after making a change to verify success.
-- **Atomic Commits:** Focus on one logical change at a time. If a task requires multiple steps, confirm after each step.
-- **Context Management:** If the conversation history gets long or we switch to a new feature, proactively suggest a `/clear` after summarizing progress. After code changes make sure you verify and update any .md (readme, architecture, etc.) files.
-- **Git commit messages:** Use Conventional Commits (https://www.conventionalcommits.org/en/v1.0.0/). Make sure the commit message is short and to the point, no long unneccessary explanations and buzzwords, keep it simple, human readable and understandable.
-- Try to not do the hard work yourself (in the main agent), prefer to delegate tasks to multiple (appropriate) sub-agents to work in parallel. Main agent should aim to orchestrate (if possible) the work with sub-agents.
+---
+
+# Agentic Implementation Plan
+
+Before any code execution for complex tasks, generate a plan using this structure:
+
+## 1. 🎯 Summary
+- High-level architectural goal.
+- List of specialized sub-agents required for parallel execution.
+
+## 2. 🗺️ Strategy
+- **File Diff Preview:** List every file to be created or modified.
+- **Breaking Changes:** Explicitly flag if this change breaks existing APIs or DB schemas.
+
+## 3. 🚨 Risk Assessment
+- **Risk Level:** [LOW / MEDIUM / HIGH]
+- **Rollback Plan:** Specific steps to undo the changes if the build fails.
+- **Human Gate:** If Risk is HIGH, stop and wait for a "PROCEED" command.
+
+## 4. 🧪 Verification Plan
+- Specific commands to run (e.g., `go test ./internal/auth/...`, or whatever the test/build command is).
+- Expected visual/log output for success.
+
+# Go Production Standards
+
+> Apply the following when working on Go (`*.go`) files.
+
+## 💻 Coding Patterns
+- **Simplicity (KISS):** Prefer smaller, focused functions over complex ones. If a function >30 lines, refactor into sub-utilities.
+- **Packages:** Avoid "stuttering." Use `auth.Service` instead of `auth.AuthService`.
+- **Error Handling:** - ALWAYS wrap errors with context: `fmt.Errorf("user storage: save: %w", err)`.
+  - Use `errors.Is` and `errors.As` for checking error types.
+- **Interfaces:** "Accept interfaces, return concrete types." Keep interfaces small (2-3 methods max).
 
 ## 🧪 Testing & Quality
-- **Test First:** If a bug is reported, try to create a reproduction test case before fixing it.
-- **Linting:** Ensure all changes pass the project's linting rules before finishing a task.
-- **Refactoring:** Do not refactor unrelated code unless explicitly asked. Stay focused on the current task.
+- **Table-Driven Tests:** Use table-driven patterns for all logic-heavy functions.
+- **Mocks:** Avoid heavy mocking libraries. Prefer "fake" implementations or thin interfaces for external I/O.
+- **Naming:** Use `MixedCaps` (Acronyms like `ID`, `HTTP`, `URL` should be consistent case).
 
-## 📝 Communication
-- **Planning:** For complex tasks (affecting >2 files), always provide a brief technical plan in "Plan Mode" before executing.
-- **Errors:** If a command fails twice, stop and ask for clarification rather than trying a third time blindly.
-- **Feedback:** If anything is unclear, stop and ask for clarification rather than trying to improvise the solution.
-
-# Golang
-
-## 💻 Coding Standards
-- **Imports:** Group imports by: 1. Standard library, 2. External dependencies, 3. Local modules.
-- **Maintainability:** Prioritize readability over "clever" one-liners. Prefer smaller functions, split big functions into smaller ones. Always verify if you can re-use some of the existing functions (or functionalities).
-- **Error Handling:** Always include explicit error handling for async operations and I/O.
-- **Naming**: Use MixedCaps (not snake_case). Acronyms should be consistent case (URL, HTTP, ID).
-- **Interfaces**: Accept interfaces, return concrete types. Keep interfaces small.
-- **Receivers**: Use pointer receivers for methods that modify state; value receivers for read-only.
-- **Packages**: Avoid stuttering (e.g., `config.Config` not `config.ConfigStruct`)
-
----------------------------------------------------------------------------------------------------------------------------------------------
+---
