@@ -34,19 +34,18 @@ Before any code execution for complex tasks, generate a plan using this structur
 - **Human Gate:** If Risk is HIGH, stop and wait for a "PROCEED" command.
 
 ## 4. 🧪 Verification Plan
-- Specific commands to run (e.g., `go test ./internal/auth/...`, or whatever the test/build command is).
+- Specific commands to run (e.g., `go test ./internal/auth/...`, or whatever the test command is for the project).
 - Expected visual/log output for success.
+- Always write new temporary tests to verify your changes.
 
-# Go Production Standards
-
-> Apply the following when working on Go (`*.go`) files.
 
 ## 💻 Coding Patterns
 - **Simplicity (KISS):** Prefer smaller, focused functions over complex ones. If a function >30 lines, refactor into sub-utilities.
 - **Packages:** Avoid "stuttering." Use `auth.Service` instead of `auth.AuthService`.
-- **Error Handling:** - ALWAYS wrap errors with context: `fmt.Errorf("user storage: save: %w", err)`.
+- **Error Handling:** ALWAYS wrap errors with context: `fmt.Errorf("user storage: save: %w", err)`.
   - Use `errors.Is` and `errors.As` for checking error types.
 - **Interfaces:** "Accept interfaces, return concrete types." Keep interfaces small (2-3 methods max).
+- **Project structure:** Follow vertical-slices architectrue (feature + hexagonal/clean), package by feature. Follow Golang best practices. 
 
 ## 🧪 Testing & Quality
 - **Table-Driven Tests:** Use table-driven patterns for all logic-heavy functions.
