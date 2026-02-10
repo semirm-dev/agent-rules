@@ -20,5 +20,6 @@ Before any code execution for complex tasks, generate a plan artifact using this
 - **Human Gate:** If Risk is HIGH, stop and wait for a "PROCEED" command.
 
 ## 4. 🧪 Verification Plan
-- Specific commands to run (e.g., `go test ./internal/auth/...`, or whatever the test/build command is).
+- Specific commands to run (e.g., `go test ./internal/auth/...`, or whatever the test command is for the project).
 - Expected visual/log output for success.
+- Write new temporary tests to verify your changes (if possible).

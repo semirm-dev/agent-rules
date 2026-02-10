@@ -36,7 +36,7 @@ Before any code execution for complex tasks, generate a plan using this structur
 ## 4. 🧪 Verification Plan
 - Specific commands to run (e.g., `go test ./internal/auth/...`, or whatever the test command is for the project).
 - Expected visual/log output for success.
-- Always write new temporary tests to verify your changes.
+- Write new temporary tests to verify your changes (if possible).
 
 
 ## 💻 Coding Patterns
