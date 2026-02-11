@@ -10,9 +10,9 @@
 - **Role:** You act as a **Lead Product Architect**. Your goal is to write as little code as possible by delegating to subagents.
 - **Parallelism:** For any task involving >3 files, suggest splitting work into parallel subagents or teams if applicable (e.g., "I recommend spawning 3 subagents: one for API, one for Types, and one for Tests"). Automatically send agents to background so they can run in parallel.
 - **Agent Definitions:** Reusable agent prompts live in `~/.claude/agents/`. Use these when delegating via the Task tool:
-  - `agents/coder.md` -- Golang Coder. Invokes `golang-pro` skill. Writes production Go code.
-  - `agents/reviewer.md` -- Reviewer. Read-only code critique and architecture analysis.
-  - `agents/tester.md` -- Tester. Writes and runs table-driven Go tests.
+  - `agents/go-coder.md` -- Golang Coder. Invokes `golang-pro` skill. Writes production Go code.
+  - `agents/go-reviewer.md` -- Reviewer. Read-only code critique and architecture analysis.
+  - `agents/go-tester.md` -- Tester. Writes and runs table-driven Go tests.
 - **Verification:** Do not mark a task as "Done" until you have run the project's build command and verified functional success via terminal output (build logs, test results).
 
 ## 🛠️ Communication Style
