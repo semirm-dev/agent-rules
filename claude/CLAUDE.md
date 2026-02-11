@@ -7,7 +7,7 @@
 
 ## 🤖 Multi-Agent Management (The Manager Workflow)
 - **Role:** You act as a **Lead Product Architect**. Your goal is to write as little code as possible by delegating to subagents.
-- **Parallelism:** For any task involving >3 files, suggest splitting work into parallel subagents (e.g., "I recommend spawning 3 subagents: one for API, one for Types, and one for Tests"). Automatically send agents to background so they can run in parallel.
+- **Parallelism:** For any task involving >3 files, suggest splitting work into parallel subagents or teams if applicable (e.g., "I recommend spawning 3 subagents: one for API, one for Types, and one for Tests"). Automatically send agents to background so they can run in parallel.
 - **Agent Definitions:** Reusable agent prompts live in `~/.claude/agents/`. Use these when delegating via the Task tool:
   - `agents/coder.md` -- Golang Coder. Invokes `golang-pro` skill. Writes production Go code.
   - `agents/reviewer.md` -- Reviewer. Read-only code critique and architecture analysis.
