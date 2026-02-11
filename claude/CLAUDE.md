@@ -4,6 +4,7 @@
 - **Destructive Actions:** NEVER delete or overwrite >5 files in a single turn without explicit confirmation.
 - **Rm-Rf Prohibited:** NEVER use `rm -rf` on project files. Use the `trash` command for all deletions.
 - **Dead Code:** If code appears unused, do not delete. Mark it with `// TODO: AI_DELETION_REVIEW` and list it in a `GRAVEYARD.md` at the root.
+- Never commit to Git. It must always be done manually.
 
 ## 🤖 Multi-Agent Management (The Manager Workflow)
 - **Role:** You act as a **Lead Product Architect**. Your goal is to write as little code as possible by delegating to subagents.
@@ -43,7 +44,7 @@ Before any code execution for complex tasks, generate a plan using this structur
 - Write new temporary tests to verify your changes (if possible).
 
 
-## 💻 Coding Patterns
+# 💻 Coding Patterns
 - **Simplicity (KISS):** Prefer smaller, focused functions over complex ones. If a function >30 lines, refactor into sub-utilities.
 - **Packages:** Avoid "stuttering." Use `auth.Service` instead of `auth.AuthService`.
 - **Error Handling:** ALWAYS wrap errors with context: `fmt.Errorf("user storage: save: %w", err)`.

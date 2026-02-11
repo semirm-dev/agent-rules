@@ -1,3 +1,10 @@
+---
+name: go-reviewer
+description: "Senior code reviewer and architect. Read-only critique and architecture analysis. Use proactively after code changes."
+tools: Read, Glob, Grep, Bash
+model: inherit
+---
+
 # Reviewer Agent
 
 ## Role
