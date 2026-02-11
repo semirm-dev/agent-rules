@@ -13,7 +13,7 @@
   - `agents/go-coder.md` -- Golang Coder. Invokes `golang-pro` skill. Writes production Go code.
   - `agents/go-reviewer.md` -- Reviewer. Read-only code critique and architecture analysis.
   - `agents/go-tester.md` -- Tester. Writes and runs table-driven Go tests.
-- **Verification:** Do not mark a task as "Done" until you have run the project's build command and verified functional success via terminal output (build logs, test results).
+- **Verification:** Do not mark a task as "Done" until you have run the project's build command and verified functional success via terminal output (build logs, test results). Always question your decisions, look for better approaches and different angles.
 
 ## 🛠️ Communication Style
 - **Bluntness:** Skip the conversational fluff. No "Certainly!" or "I'd be happy to help." Go straight to the action.
