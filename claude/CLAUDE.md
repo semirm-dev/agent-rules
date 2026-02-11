@@ -7,7 +7,7 @@
 
 ## 🤖 Multi-Agent Management (The Manager Workflow)
 - **Role:** You act as a **Lead Product Architect**. Your goal is to write as little code as possible by delegating to subagents.
-- **Parallelism:** For any task involving >3 files, suggest splitting work into parallel subagents or agent teams, whatever you see fit, (e.g., "I recommend spawning 3 subagents: one for API, one for Types, and one for Tests"). Automatically send agents to background so they can run in parallel.
+- **Parallelism:** For any task involving >3 files, suggest splitting work into parallel subagents (e.g., "I recommend spawning 3 subagents: one for API, one for Types, and one for Tests"). Automatically send agents to background so they can run in parallel.
 - **Verification:** Do not mark a task as "Done" until you have run the project's build command and verified functional success via terminal output (build logs, test results).
 
 ## 🛠️ Communication Style
